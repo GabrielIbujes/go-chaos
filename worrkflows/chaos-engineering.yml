@@ -1,0 +1,20 @@
+name: Chaos Engineering
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  chaos-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Test Chaos
+        run: |
+          echo "Ejecutando prueba de caos"
+          # Simulamos el caos realizando una solicitud HTTP a la aplicación
+          curl -X GET https://go-chaos-3.onrender.com/ || echo "Error al acceder a la aplicación"
